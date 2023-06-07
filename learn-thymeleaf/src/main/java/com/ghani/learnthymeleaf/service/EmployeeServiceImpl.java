@@ -29,16 +29,21 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public ModelAndView updateEmployeeForm(Long id) {
-        return null;
+        ModelAndView mav = new ModelAndView("add-employee-form");
+        Employee employee = employeeRepo.findById(id).get();
+        mav.addObject("employee", employee);
+        return mav;
     }
 
     @Override
     public String saveEmployee(Employee employee) {
-        return null;
+        employeeRepo.save(employee);
+        return "redirect:/";
     }
 
     @Override
     public String deleteEmployee(Long id) {
-        return null;
+        employeeRepo.deleteById(id);
+        return "redirect:/";
     }
 }

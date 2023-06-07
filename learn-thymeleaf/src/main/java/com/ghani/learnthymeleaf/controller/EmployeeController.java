@@ -3,16 +3,17 @@ package com.ghani.learnthymeleaf.controller;
 import com.ghani.learnthymeleaf.entity.Employee;
 import com.ghani.learnthymeleaf.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
 
-    @GetMapping({"/list", "/"})
+    @GetMapping("/")
     public ModelAndView getEmployees(){
         return employeeService.getEmployees();
     }
@@ -32,7 +33,7 @@ public class EmployeeController {
         return employeeService.saveEmployee(employee);
     }
 
-    @DeleteMapping("/deleteEmployee")
+    @GetMapping("/deleteEmployee")
     public String deleteEmployee(@RequestParam Long id){
         return employeeService.deleteEmployee(id);
     }
